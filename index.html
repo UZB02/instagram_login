@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            justify-content: ;
+        }
+    </style>
+</head>
+<body class=" flex items-center justify-center min-h-screen">
+
+    <div class="w-full flex flex-col justify-around h-screen max-w-sm bg-white p-6 rounded-md ">
+        <!-- Language Selector -->
+        <div class="text-center text-gray-600 text-sm mb-4">
+            <select id="languageSelector" class="">
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+                <option value="uz">O'zbek</option>
+            </select>
+        </div>
+
+        <!-- Instagram Logo -->
+        <div class="flex justify-center mb-6">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="w-16">
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-3">
+            <input type="text" id="username" placeholder="Имя пользователя, эл. адрес или мобильный телефон"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+            <input type="password" id="password" placeholder="Пароль"
+                class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+            <button type="submit"
+                class="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition">
+                Войти
+            </button>
+        </form>
+
+        <!-- Forgot Password -->
+        <div class="text-center mt-4">
+            <a href="#" id="forgotPassword" class="text-blue-500 text-sm">Забыли пароль?</a>
+        </div>
+
+        <!-- Register -->
+        <div class="text-center mt-4 border-t pt-4">
+            <p id="createAccount" class="text-gray-600">Создать новый аккаунт</p>
+        </div>
+
+        <!-- Meta Logo -->
+        <div class="flex justify-center mt-6">
+            <img src="https://cdn.bcs-express.ru/article-head/12289.jpg" alt="Meta" style="width: 200px;">
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            en: {
+                usernamePlaceholder: "Username, email, or phone",
+                passwordPlaceholder: "Password",
+                loginButton: "Log In",
+                forgotPassword: "Forgot password?",
+                createAccount: "Create a new account"
+            },
+            ru: {
+                usernamePlaceholder: "Имя пользователя, эл. адрес или мобильный телефон",
+                passwordPlaceholder: "Пароль",
+                loginButton: "Войти",
+                forgotPassword: "Забыли пароль?",
+                createAccount: "Создать новый аккаунт"
+            },
+            uz: {
+                usernamePlaceholder: "Foydalanuvchi nomi, email yoki telefon",
+                passwordPlaceholder: "Parol",
+                loginButton: "Kirish",
+                forgotPassword: "Parolni unutdingizmi?",
+                createAccount: "Yangi akkaunt yaratish"
+            }
+        };
+
+        document.getElementById("languageSelector").addEventListener("change", function() {
+            const selectedLang = this.value;
+            document.getElementById("username").placeholder = translations[selectedLang].usernamePlaceholder;
+            document.getElementById("password").placeholder = translations[selectedLang].passwordPlaceholder;
+            document.querySelector("button").textContent = translations[selectedLang].loginButton;
+            document.getElementById("forgotPassword").textContent = translations[selectedLang].forgotPassword;
+            document.getElementById("createAccount").textContent = translations[selectedLang].createAccount;
+        });document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            
+            if (!username || !password) {
+                alert("Iltimos, foydalanuvchi nomi va parolni kiriting!");
+                return;
+            }
+            
+            alert("Muvaffaqiyatli kirdingiz!");
+        });
+    </script>
+
+</body>
+</html>
